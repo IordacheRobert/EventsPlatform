@@ -15,6 +15,8 @@ public class ResponseFilter implements ContainerResponseFilter {
 	public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext)
 			throws IOException {
 
+		HibernateUtils hibernate=HibernateUtils.getInstance();
+		hibernate.closeSession();
 		System.out.println("------------------- Response ----------------");
 	}
 

@@ -12,7 +12,8 @@ public class RequestFilter implements ContainerRequestFilter{
 	@Override
 	public void filter(ContainerRequestContext requestContext) throws IOException {
 
-
+		HibernateUtils hibernate=HibernateUtils.getInstance();
+		hibernate.openSession();
 		System.out.println("------------------- Request ----------------");
 
 	}

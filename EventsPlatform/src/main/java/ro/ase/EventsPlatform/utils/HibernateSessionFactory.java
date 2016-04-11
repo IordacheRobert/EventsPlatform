@@ -1,5 +1,6 @@
 package ro.ase.EventsPlatform.utils;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -8,6 +9,7 @@ public class HibernateSessionFactory {
 	private static HibernateSessionFactory instance=null;
 	private static SessionFactory factory;
 	private static int counter=0;
+	private static Session session=null;
 	
 	
 	private HibernateSessionFactory(){
@@ -34,4 +36,10 @@ public class HibernateSessionFactory {
 	}
 	
 
+	
+	
+	
+	
+	
+	
 }

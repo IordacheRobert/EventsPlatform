@@ -31,32 +31,32 @@ public class MyResource {
     }
     
     
-    @GET
-    @Path("event")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Event getEvent(){
-    	
-    	Event temp=new EventDao().getEvent(25);
-    	return temp;
+//    @GET
+//    @Path("event")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Event getEvent(){
+//    	
+//    	Event temp=new EventDao().getEvent(25);
+//    	return temp;
+//		
+//    }
+//    
+//    @GET
+//    @Path("location")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Location getLocation(){
+//    	return new LocationDao().getObject(11);
+//		
+//    }
+//    
+//
+//    @GET
+//    @Path("user")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public User getUser(){
+//    	return new UserDao().getObject(3);
 		
-    }
-    
-    @GET
-    @Path("location")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Location getLocation(){
-    	return new LocationDao().getObject(11);
-		
-    }
-    
-
-    @GET
-    @Path("user")
-    @Produces(MediaType.APPLICATION_JSON)
-    public User getUser(){
-    	return new UserDao().getObject(3);
-		
-    }
+//    }
     
     
 //    @GET

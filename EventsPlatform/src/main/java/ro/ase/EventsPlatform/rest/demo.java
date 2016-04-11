@@ -5,6 +5,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import ro.ase.EventsPlatform.dao.LocationDao;
+import ro.ase.EventsPlatform.model.Location;
+
 
 @Path("demo")
 public class demo {
@@ -16,4 +19,12 @@ public class demo {
 	public String getDemo()	{
 		return "Works!";
 	}
+	
+	@GET
+	@Path("location")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Location getLocation()	{
+		return new LocationDao().getLocation(11);
+	}
+	
 }
