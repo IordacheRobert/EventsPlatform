@@ -58,8 +58,8 @@ public class test {
 		//event.addParticipant(user3);
 		
 		//eventDao.saveObject(event);
-		Event temp=eventDao.getEvent(25);
-		System.out.println(temp.getParticipants());
+		//Event temp=eventDao.getEvent(25);
+		//System.out.println(temp.getParticipants());
 		//System.out.println(temp.getParticipants().size());
 		//System.out.println(event);
 		//System.out.println("-------------------------");

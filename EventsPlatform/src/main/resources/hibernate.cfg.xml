@@ -26,11 +26,11 @@
    <property name="hibernate.show_sql">true</property>
    <property name="hbm2ddl.auto">update</property>
    
-  	<mapping class="ro.ase.events.model.Location"/>
-   	<mapping class="ro.ase.events.model.EventType"/>
-   	<mapping class="ro.ase.events.model.User"/>
-   	<mapping class="ro.ase.events.model.Event"/>
-	<mapping class="ro.ase.events.model.Ticket"/>
+  	<mapping class="ro.ase.EventsPlatform.model.Location"/>
+   	<mapping class="ro.ase.EventsPlatform.model.EventType"/>
+   	<mapping class="ro.ase.EventsPlatform.model.User"/>
+   	<mapping class="ro.ase.EventsPlatform.model.Event"/>
+	<mapping class="ro.ase.EventsPlatform.model.Ticket"/>
 	
 </session-factory>
 </hibernate-configuration>

@@ -17,46 +17,46 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 @Path("file")
 public class UploadFileService {
 
-	@POST
-	@Path("/upload")
-	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadFile(
-		@FormDataParam("file") InputStream uploadedInputStream,
-		@FormDataParam("file") FormDataContentDisposition fileDetail) {
-		
-		
-		String uploadedFileLocation ="C:\\Tomcat7.0\\webapps\\UploadImage\\WEB-INF\\classes\\images\\"+ fileDetail.getFileName();
-		System.out.println(uploadedFileLocation);
-		
-		writeToFile(uploadedInputStream, uploadedFileLocation);
-
-		String output = "File uploaded to : " + uploadedFileLocation;
-
-		return Response.status(200).entity(uploadedFileLocation).build();
-
-	}
-
-	// save uploaded file to new location
-	private void writeToFile(InputStream uploadedInputStream,
-		String uploadedFileLocation) {
-
-		try {
-			OutputStream out = new FileOutputStream(new File(
-					uploadedFileLocation));
-			int read = 0;
-			byte[] bytes = new byte[1024];
-
-			out = new FileOutputStream(new File(uploadedFileLocation));
-			while ((read = uploadedInputStream.read(bytes)) != -1) {
-				out.write(bytes, 0, read);
-			}
-			out.flush();
-			out.close();
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
-
-	}
+//	@POST
+//	@Path("/upload")
+//	@Consumes(MediaType.MULTIPART_FORM_DATA)
+//	public Response uploadFile(
+//		@FormDataParam("file") InputStream uploadedInputStream,
+//		@FormDataParam("file") FormDataContentDisposition fileDetail) {
+//		
+//		
+//		String uploadedFileLocation ="C:\\Tomcat7.0\\webapps\\UploadImage\\WEB-INF\\classes\\images\\"+ fileDetail.getFileName();
+//		System.out.println(uploadedFileLocation);
+//		
+//		writeToFile(uploadedInputStream, uploadedFileLocation);
+//
+//		String output = "File uploaded to : " + uploadedFileLocation;
+//
+//		return Response.status(200).entity(uploadedFileLocation).build();
+//
+//	}
+//
+//	// save uploaded file to new location
+//	private void writeToFile(InputStream uploadedInputStream,
+//		String uploadedFileLocation) {
+//
+//		try {
+//			OutputStream out = new FileOutputStream(new File(
+//					uploadedFileLocation));
+//			int read = 0;
+//			byte[] bytes = new byte[1024];
+//
+//			out = new FileOutputStream(new File(uploadedFileLocation));
+//			while ((read = uploadedInputStream.read(bytes)) != -1) {
+//				out.write(bytes, 0, read);
+//			}
+//			out.flush();
+//			out.close();
+//		} catch (IOException e) {
+//
+//			e.printStackTrace();
+//		}
+//
+//	}
 
 }

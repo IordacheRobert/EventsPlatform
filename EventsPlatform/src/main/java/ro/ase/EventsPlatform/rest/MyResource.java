@@ -45,7 +45,7 @@ public class MyResource {
     @Path("location")
     @Produces(MediaType.APPLICATION_JSON)
     public Location getLocation(){
-    	return new LocationDao().getObject(2);
+    	return new LocationDao().getObject(11);
 		
     }
     
@@ -59,30 +59,30 @@ public class MyResource {
     }
     
     
-    @GET
-    @Path("/images/{name}")
-    @Produces("image/jpg")
-    public Response downloadImageFile(@PathParam("name")String denumire) {
-    	ClassLoader classLoader = getClass().getClassLoader();
-        // set file (and path) to be download
-    	String path=null;
-    	try{
-    		 path=classLoader.getResource("im ages/"+denumire).getFile();
-    		 path=URLDecoder.decode(path,"UTF-8");
-    	}catch(NullPointerException ex){
-    		System.out.println(ex.getMessage());
-    		 return Response.ok().status(404).build();
-    	} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	System.out.println(path);
-        File file = new File(path);
- 
-        ResponseBuilder responseBuilder = Response.ok((Object) file);
-       // responseBuilder.header("Content-Disposition", "attachment; filename=\"MyPngImageFile.png\"");
-        return responseBuilder.build();
-    }
+//    @GET
+//    @Path("/images/{name}")
+//    @Produces("image/jpg")
+//    public Response downloadImageFile(@PathParam("name")String denumire) {
+//    	ClassLoader classLoader = getClass().getClassLoader();
+//        // set file (and path) to be download
+//    	String path=null;
+//    	try{
+//    		 path=classLoader.getResource("im ages/"+denumire).getFile();
+//    		 path=URLDecoder.decode(path,"UTF-8");
+//    	}catch(NullPointerException ex){
+//    		System.out.println(ex.getMessage());
+//    		 return Response.ok().status(404).build();
+//    	} catch (UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//    	System.out.println(path);
+//        File file = new File(path);
+// 
+//        ResponseBuilder responseBuilder = Response.ok((Object) file);
+//       // responseBuilder.header("Content-Disposition", "attachment; filename=\"MyPngImageFile.png\"");
+//        return responseBuilder.build();
+//    }
     
     
 }
