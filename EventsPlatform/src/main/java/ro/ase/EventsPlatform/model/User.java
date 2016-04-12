@@ -1,4 +1,4 @@
-package ro.ase.EventsPlatform.model;
+ package ro.ase.EventsPlatform.model;
 
 
 import java.util.ArrayList;
@@ -16,6 +16,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 @Entity
 @Table(name="USER")
@@ -48,12 +52,8 @@ public class User {
 	@JoinColumn(name = "LOCATION_ID")
 	private Location location;
 	
-	@OneToMany(mappedBy = "organizer", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "organizer",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	private List<Event> myEvents=new ArrayList<>();
-	
-	
-	@ManyToMany(mappedBy = "participants",cascade=CascadeType.ALL)
-	private List<Event> attendingEvents = new ArrayList<>();
 	
 	public User(String email, String password) {
 		super();
@@ -78,14 +78,6 @@ public class User {
 
 	public void setMyEvents(List<Event> myEvents) {
 		this.myEvents = myEvents;
-	}
-
-	public List<Event> getAttendingEvents() {
-		return attendingEvents;
-	}
-
-	public void setAttendingEvents(List<Event> attendingEvents) {
-		this.attendingEvents = attendingEvents;
 	}
 
 	public User setId(int id) {
@@ -164,9 +156,4 @@ public class User {
 	public User build(){
 		return this;
 	}
-
-
-	
-
-	
 }

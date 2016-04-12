@@ -1,10 +1,6 @@
 package ro.ase.EventsPlatform.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,20 +10,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 
 @Entity
 @Table(name="EVENT")
 public class Event {
-
-	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -59,8 +52,9 @@ public class Event {
 	@Column(name="PRICE",nullable=false)
 	private Double price;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="ORGANIZER_ID")
+	@JsonIgnore
 	private User organizer;
 	
 	
@@ -72,10 +66,6 @@ public class Event {
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="LOCATION_ID")
 	private Location location;
-	
-	
-	@ManyToMany(cascade =CascadeType.ALL )
-	private List<User> participants = new ArrayList<>();
 	
 
 	public Event() {
@@ -100,27 +90,7 @@ public class Event {
 	}
 	
 	
-	public void addParticipant(User participant){
-		this.participants.add(participant);
-		participant.getAttendingEvents().add(this);
-	}
-	
-	public void removeParticipant(User participant){
-		this.participants.remove(participant);
-		participant.getAttendingEvents().remove(this);
-	}
-
-	public List<User> getParticipants() {
-		return participants;
-	}
-
-
-	public void setParticipants(List<User> participants) {
-		this.participants = participants;
-	}
-
-
-	public Event setId(int id) {
+		public Event setId(int id) {
 		this.id = id;
 		return this;
 	}
@@ -231,10 +201,5 @@ public class Event {
 	public Location getLocation() {
 		return location;
 	}
-
-
-
-
-	
 	
 }
