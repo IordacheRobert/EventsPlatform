@@ -1,11 +1,19 @@
 package ro.ase.EventsPlatform.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 @Table(name="EVENT_TYPE")
@@ -22,6 +30,10 @@ public class EventType {
 	
 	@Column(name = "DESCRIPTION",nullable=false,length=1000)
 	private String description;
+	
+	@OneToMany(mappedBy = "organizer",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JsonIgnore
+	private List<Event> events=new ArrayList<>();
 
 	public EventType() {
 		super();

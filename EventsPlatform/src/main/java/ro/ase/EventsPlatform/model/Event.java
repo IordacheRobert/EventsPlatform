@@ -58,7 +58,7 @@ public class Event {
 	private User organizer;
 	
 	
-	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="EVENT_TYPE_ID")
 	private EventType type;
 	
