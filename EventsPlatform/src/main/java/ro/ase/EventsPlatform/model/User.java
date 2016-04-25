@@ -1,5 +1,4 @@
- package ro.ase.EventsPlatform.model;
-
+package ro.ase.EventsPlatform.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,61 +15,81 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonManagedReference;
 
 @Entity
-@Table(name="USER")
+@Table(name = "USER")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID")
 	private int id;
-	
-	@Column(name="FIRST_NAME",nullable=false)
+
+	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
-	
-	@Column(name="LAST_NAME",nullable=false)
+
+	@Column(name = "LAST_NAME", nullable = false)
 	private String lastName;
-	
-	@Column(name="EMAIL",nullable=false)
+
+	@Column(name = "EMAIL", nullable = false)
 	private String email;
-	
-	@Column(name="PASSWORD",nullable=false)
+
+	@Column(name = "PASSWORD", nullable = false)
 	private String password;
-	
-	@Column(name="AVATAR_URL",nullable=false)
+
+	@Column(name = "AVATAR_URL", nullable = false)
 	private String avatarURL;
-	
-	@Column(name="TYPE",nullable=false)
+
+	@Column(name = "PHONE_NUMBER", nullable = false)
+	private String PhoneNumber;
+
+	@Column(name = "TYPE", nullable = false)
 	private int type;
-	
-	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "LOCATION_ID")
 	private Location location;
-	
-	@OneToMany(mappedBy = "organizer",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	private List<Event> myEvents=new ArrayList<>();
-	
+
+	@OneToMany(mappedBy = "organizer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Event> myEvents = new ArrayList<>();
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "participants")
+	@JsonIgnore
+	private List<Event> attendedEvents = new ArrayList<>();
+
 	public User(String email, String password) {
 		super();
 		this.email = email;
 		this.password = password;
-		this.avatarURL =  "someCoverURL";
+		this.avatarURL = "someCoverURL";
 		this.type = 1;
-		this.location = new Location("Bucharest","Romania","unknow");
-		this.firstName =email;
+		this.location = new Location("Bucharest", "Romania", "unknow");
+		this.firstName = email;
 		this.lastName = email;
+		this.PhoneNumber = "0763569636";
 	}
 
 	public User() {
 		super();
 	}
-	
-	
+
+	public String getPhoneNumber() {
+		return PhoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		PhoneNumber = phoneNumber;
+	}
+
+	public List<Event> getAttendedEvents() {
+		return attendedEvents;
+	}
+
+	public void setAttendedEvents(List<Event> attendedEvents) {
+		this.attendedEvents = attendedEvents;
+	}
 
 	public List<Event> getMyEvents() {
 		return myEvents;
@@ -120,7 +139,6 @@ public class User {
 		return this;
 	}
 
-
 	public int getId() {
 		return id;
 	}
@@ -153,7 +171,16 @@ public class User {
 		return location;
 	}
 
-	public User build(){
+	public User build() {
 		return this;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", password=" + password + ", avatarURL=" + avatarURL + ", PhoneNumber=" + PhoneNumber + ", type="
+				+ type + ", location=" + location + ", myEvents=" + myEvents ;
+	}
+	
+	
 }
