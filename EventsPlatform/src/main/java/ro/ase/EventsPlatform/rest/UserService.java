@@ -32,7 +32,7 @@ public class UserService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getUsers() throws JsonGenerationException, JsonMappingException, IOException {
-
+		System.out.println("events request");
 		return Response
 				.ok(mapper.writeValueAsBytes(userDao.getAll()))
 				.build();
@@ -43,7 +43,7 @@ public class UserService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getUserById(@PathParam("id") String id)
 			throws JsonGenerationException, JsonMappingException, NumberFormatException, IOException {
-
+			
 		return Response
 				.ok(mapper.writeValueAsString(userDao.getObject(Integer.parseInt(id))))
 				.build();
