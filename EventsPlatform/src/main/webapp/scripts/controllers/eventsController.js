@@ -1,16 +1,16 @@
 app.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/login', {
-    templateUrl: 'views/login.html',
-    controller: 'loginController'
+  $routeProvider.when('/events', {
+    templateUrl: 'views/events.html',
+    controller: 'eventsController'
   });
 }]);
 
-app.controller('loginController',['$scope','$http',function($scope,$http) {
+app.controller('eventsController',['$scope','$http',function($scope,$http) {
   $http({
     method: 'GET',
-    url: '/EventsPlatform/webapi/users'
+    url: '/EventsPlatform/webapi/events'
   }).then(function successCallback(response) {
-      $scope.users=response.data;
+      $scope.events=response.data;
     }, function errorCallback(response) {
       $scope.users="no events"
     });

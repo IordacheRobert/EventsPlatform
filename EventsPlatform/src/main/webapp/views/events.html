@@ -1,0 +1,11 @@
+<div ng-include="'views/navbar.html'"></div>
+
+<div class="margin-top-60">
+  <p>
+    Events {{test}}
+  </p>
+
+  <ul>
+    <li ng-repeat="event in events">{{event.title+"  "+event.description}}</li>
+  </ul>
+</div>

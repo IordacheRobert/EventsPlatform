@@ -1,4 +1,10 @@
-<div class="col-md-6 col-md-offset-3">
+<div ng-include="'views/navbar.html'"></div>
+
+<div class="margin-top-60">
+  login
+</div>
+<!-- <img src="https://events.com/wp-content/uploads/2015/07/festival-planning.jpg" style="widht:100%;" /> -->
+<!-- <div class="col-md-6 col-md-offset-3">
     <h2>Login</h2>
     <form name="form" ng-submit="vm.login()" role="form">
         <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
@@ -19,10 +25,12 @@
     </form>
 </div>
 
-<p>
-  Login
-</p>
+<div>
+  <p>
+    Login
+  </p>
 
-<ol>
-  <li ng-repeat="user in users">{{user.firstName+'  '+user.lastName+'  '+user.password}}</li>
-</ol>
+  <ol>
+    <li ng-repeat="user in users">{{user.firstName+'  '+user.lastName+'  '+user.password}}</li>
+  </ol>
+</div> -->

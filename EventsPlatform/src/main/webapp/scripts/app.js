@@ -6,6 +6,6 @@ var app = angular.module('eventsApp', [
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({
-    redirectTo: '/login'
+    redirectTo: '/events'
   });
 }]);
