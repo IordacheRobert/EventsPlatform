@@ -5,7 +5,12 @@ app.config(['$routeProvider', function($routeProvider) {
   });
 }]);
 
-app.controller('eventsController',['$scope','$http',function($scope,$http) {
+app.controller('eventsController',['$scope','$http','userService',function($scope,$http,userService) {
+
+  $scope.profileButton=userService.getAuthenticationState();
+
+  console.log('User state='+userService.getAuthenticationState());
+
   $http({
     method: 'GET',
     url: '/EventsPlatform/webapi/events'

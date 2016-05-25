@@ -1,7 +1,6 @@
 var app = angular.module('eventsApp', [
   'ngRoute',
-  'ngResource',
-  'ui.bootstrap'
+  'ngResource'
 ]);
 
 app.config(['$routeProvider', function($routeProvider) {

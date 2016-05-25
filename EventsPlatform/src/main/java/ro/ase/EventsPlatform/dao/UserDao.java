@@ -4,6 +4,14 @@ import java.util.List;
 
 import javax.ws.rs.NotFoundException;
 
+import org.eclipse.persistence.internal.oxm.schema.model.Restriction;
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.criterion.CriteriaQuery;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.engine.spi.TypedValue;
+
 import ro.ase.EventsPlatform.model.Event;
 import ro.ase.EventsPlatform.model.User;
 
@@ -14,6 +22,25 @@ public class UserDao extends BaseDAO<User>{
 		super(User.class);
 	}
 
+	public User getUserByEmailAndPassword(String email, String password){
+		User user=null;
+		
+		hibernate.getSession().beginTransaction(); 
+		Criteria criteria=hibernate.getSession().createCriteria(User.class);
+		
+		criteria.add(Restrictions.eq("email", email));
+		criteria.add(Restrictions.eq("password", password));
+		List list=criteria.list();
+		
+		if(list.isEmpty())throw new  NotFoundException();
+		else user=(User) list.get(0);
+		
+		hibernate.getSession().getTransaction().commit();
+		
+		return user;
+	}
+	
+	
 	@Override
 	public void deleteObject(int id) {
 

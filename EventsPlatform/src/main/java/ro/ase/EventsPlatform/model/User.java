@@ -53,11 +53,22 @@ public class User {
 	private Location location;
 
 	@OneToMany(mappedBy = "organizer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore//after
 	private List<Event> myEvents = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "participants")
 	@JsonIgnore
 	private List<Event> attendedEvents = new ArrayList<>();
+	
+	@OneToMany(mappedBy="user")
+	@JsonIgnore//after
+	private List<Comment> comments=new ArrayList();
+	
+	@OneToMany(mappedBy="user")
+	@JsonIgnore//after
+	private List<Report> reports=new ArrayList();
+	
+	
 
 	public User(String email, String password) {
 		super();

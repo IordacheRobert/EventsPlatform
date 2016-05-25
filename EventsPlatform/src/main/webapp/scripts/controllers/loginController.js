@@ -5,18 +5,18 @@ app.config(['$routeProvider', function($routeProvider) {
   });
 }]);
 
-app.controller('loginController',['$scope','$http',function($scope,$http) {
-  $http({
-    method: 'GET',
-    url: '/EventsPlatform/webapi/users'
-  }).then(function successCallback(response) {
-      $scope.users=response.data;
-    }, function errorCallback(response) {
-      $scope.users="no events"
-    });
 
-$scope.test="Robert";
+app.controller('loginController',['$scope','$http','userService','$location',function($scope,$http,userService,$location) {
+  $scope.profileButton=userService.getAuthenticationState();
 
+   $scope.login= function(){
+        console.log(userService.getUser());//test pruposes
+        userService.login($scope.form.email,$scope.form.password).then(function () {
+        $scope.alertState=userService.getLoginState();
+        $scope.profileButton=userService.getAuthenticationState();
+        console.log(userService.getUser());//test pruposes
+       })
+     }
 
 
 }]);

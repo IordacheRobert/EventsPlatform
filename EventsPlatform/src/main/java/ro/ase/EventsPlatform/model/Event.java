@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -35,8 +36,8 @@ public class Event {
 	@Column(name = "DESCRIPTION", nullable = false, length = 1000)
 	private String description;
 
-	@Column(name = "IS_ACTIVE", nullable = false)
-	private Boolean isActive;
+	@Column(name = "STATE", nullable = false)
+	private Boolean state;
 
 	@Column(name = "START_DATE", nullable = false)
 	private Date startDate;
@@ -72,6 +73,15 @@ public class Event {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private List<User> participants = new ArrayList<>();
 
+	
+	
+	@OneToMany(mappedBy="event")
+	private List<Comment> comments=new ArrayList();
+	
+	@OneToMany(mappedBy="event")
+	private List<Report> reports=new ArrayList();
+	
+	
 	public Event() {
 		super();
 	}
@@ -91,7 +101,7 @@ public class Event {
 		this.location = new Location("Bucharest", "Romania", "unknow");
 		this.availableTickets = 1000;
 		this.coverURL = "someCoverURL";
-		this.isActive = false;
+		this.state = false;
 	}
 
 	public void addParticipant(User participant) {
@@ -110,11 +120,11 @@ public class Event {
 	}
 
 	public Boolean getIsActive() {
-		return isActive;
+		return state;
 	}
 
 	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
+		this.state = isActive;
 	}
 
 	public List<User> getParticipants() {
@@ -234,7 +244,7 @@ public class Event {
 
 	@Override
 	public String toString() {
-		return "Event [id=" + id + ", title=" + title + ", description=" + description + ", isActive=" + isActive
+		return "Event [id=" + id + ", title=" + title + ", description=" + description + ", isActive=" + state
 				+ ", startDate=" + startDate + ", endDate=" + endDate + ", deadline=" + deadline + ", availableTickets="
 				+ availableTickets + ", coverURL=" + coverURL + ", price=" + price + ", organizer=" + organizer
 				+ ", type=" + type + ", location=" + location + ", participants=" + participants + "]";

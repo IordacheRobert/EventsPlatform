@@ -1,12 +1,11 @@
 package ro.ase.EventsPlatform.rest;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -32,9 +31,9 @@ public class UserService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getUsers() throws JsonGenerationException, JsonMappingException, IOException {
-		System.out.println("events request");
+		System.out.println("user request");
 		return Response
-				.ok(mapper.writeValueAsBytes(userDao.getAll()))
+				.ok(mapper.writeValueAsString(userDao.getAll()))
 				.build();
 	}
 
@@ -47,7 +46,16 @@ public class UserService {
 		return Response
 				.ok(mapper.writeValueAsString(userDao.getObject(Integer.parseInt(id))))
 				.build();
-
+	}
+	
+	@POST
+	@Path("login")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getUserByEmailAndPassword(@HeaderParam("email")String email,@HeaderParam("password")String password)
+			throws JsonGenerationException, JsonMappingException, NumberFormatException, IOException {
+		return Response
+				.ok(mapper.writeValueAsString(userDao.getUserByEmailAndPassword(email, password)))
+				.build();
 	}
 
 	@GET

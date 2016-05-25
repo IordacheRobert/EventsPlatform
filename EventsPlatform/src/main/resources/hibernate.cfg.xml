@@ -31,6 +31,8 @@
    	<mapping class="ro.ase.EventsPlatform.model.User"/>
    	<mapping class="ro.ase.EventsPlatform.model.Event"/>
 	<mapping class="ro.ase.EventsPlatform.model.Ticket"/>
+	<mapping class="ro.ase.EventsPlatform.model.Comment"/>
+	<mapping class="ro.ase.EventsPlatform.model.Report"/>
 	
 </session-factory>
 </hibernate-configuration>
