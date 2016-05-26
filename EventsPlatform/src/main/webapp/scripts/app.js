@@ -1,6 +1,7 @@
 var app = angular.module('eventsApp', [
   'ngRoute',
-  'ngResource'
+  'ngResource',
+  'uiGmapgoogle-maps'
 ]);
 
 app.config(['$routeProvider', function($routeProvider) {
@@ -8,3 +9,4 @@ app.config(['$routeProvider', function($routeProvider) {
     redirectTo: '/events'
   });
 }]);
+

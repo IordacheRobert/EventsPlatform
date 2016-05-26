@@ -59,7 +59,7 @@ public class Event {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ORGANIZER_ID", nullable = false)
-	@JsonIgnore
+	@JsonIgnore //before
 	private User organizer;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -71,14 +71,17 @@ public class Event {
 	private Location location;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JsonIgnore
 	private List<User> participants = new ArrayList<>();
 
 	
 	
 	@OneToMany(mappedBy="event")
+	@JsonIgnore
 	private List<Comment> comments=new ArrayList();
 	
 	@OneToMany(mappedBy="event")
+	@JsonIgnore
 	private List<Report> reports=new ArrayList();
 	
 	

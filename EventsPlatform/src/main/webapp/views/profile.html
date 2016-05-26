@@ -3,18 +3,21 @@
 
 <div class="container " id="content-container">
 
-<div class="header-profile">
-    <img id="avatar-profile" ng-src="{{userInfo.value.avatarURL}}" alt="Unavaillable">
-    <h2>{{userInfo.value.firstName+" "+userInfo.value.lastName}}</h2>
+<div class="row text-center">
+    <img class="img-circle img-thumbnail" id="avatar-profile" ng-src="{{userInfo.value.avatarURL}}" alt="Unavaillable">
+    <h2 class="bold">{{userInfo.value.firstName+" "+userInfo.value.lastName}}</h2>
 </div>
 
-
-  <br>
-    <div class=" col-md-12 ">
-        <div class="col-md-6">
-        <div class="panel-body">
-          <table class="table">
-            <tr>
+ 
+<br>   
+<br> 
+<div class="row ">
+    <div class="col-sm-0 col-md-1 "></div>
+    <div class="col-sm-12 col-md-4  ">
+        <h2>Info</h2>
+        <table class="table">
+            
+            <tr >
               <td>
                 Email:
               </td>
@@ -39,18 +42,49 @@
               </td>
             </tr>
           </table>
-        </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel-body">
-            Harta
-            </div>
-          </div> 
     </div>
+    <div class="col-sm-0 col-md-1 "></div>
+    
+
+    <div  class="col-sm-12 col-md-6 img-thumbnail">
+      <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+    </div>
+    
+
+</div>
     
   <p>{{userInfo.value.email}}</p>
   <p>{{userInfo.value.phoneNumber}}</p>
-  <p>{{userInfo}}</p>
+  <p>{{userInfo.value}}</p> 
 
+
+    <ul class="list-group">
+   
+    <li class="list-group-item" ng-repeat="event in userPublishedEvents">
+        <h4>{{event.title}}</h4>
+        <p>{{event.description}}</p>
+        <p>Deadline {{event.deadline | date}}</p>
+        
+    </li>
+    
+    </ul>
+    
+
+    
+    
 
 </div>
+
+<!--
+<script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat:44.6580846, lng: 25.5588447},
+          zoom: 13
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByakozUVI_wqTv8xWw54mQaDTQm8VgV2c&callback=initMap"
+    async defer></script>
+-->

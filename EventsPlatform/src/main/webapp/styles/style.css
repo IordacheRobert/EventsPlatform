@@ -43,7 +43,7 @@ input.ng-dirty{
 #avatar-profile{
     height: 200px;
     width: 200px;
-    border-radius: 50%;
+    
     
 }
 
@@ -52,4 +52,8 @@ input.ng-dirty{
     width: 100%;
     padding: 10px;
     text-align: center;
+}
+
+.angular-google-map-container {
+    height: 300px;
 }
